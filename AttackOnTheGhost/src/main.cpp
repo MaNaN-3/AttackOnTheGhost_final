@@ -15,8 +15,7 @@ Game *game=nullptr;
 
 int main(){
     int sc=0;
-    const int FPS=60;
-    const int frameDelay=100/FPS;
+
     vector<string> scores;
     fstream my_file;
     my_file.open("scores.txt", ios::in);
@@ -39,7 +38,7 @@ int main(){
     game->highscore = sc;
 
     while(game->running()){
-        frameStart=SDL_GetTicks();
+
         game->eventHandler();
         game->update();
         
@@ -48,12 +47,8 @@ int main(){
             game->highscore = game->score;
         }
         game->render();
-        frameTime=frameStart-SDL_GetTicks();
-        if(frameDelay>frameTime){
-            substracter = (frameDelay - frameTime) * (1);
-            SDL_Delay((frameDelay-frameTime)-substracter);
-            //cout << (frameDelay - frameTime) / 100 << endl;
-        }
+
+
         if (game->power == 0) {
             
             game->power = 5;

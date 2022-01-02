@@ -294,12 +294,12 @@ void Game::eventHandler()
         SDL_GetMouseState(&x, &y);
         k1 = (resolutionX - quit->getWidth()) / 2;
         k2 = (resolutionX + quit->getWidth()) / 2;
-        if ((x >= k1) && (x <= k2) && (y >= 750) && (y <= 750 + 60))
+        if ((x >= k1) && (x <= k2) && (y >= 750) && (y <= 750 + quit->getHeight()))
             isRunning = false;
 
         m1 = (resolutionX - startButton->getWidth()) / 2;
         m2 = (resolutionX + startButton->getWidth()) / 2;
-        if ((x >= m1) && (x <= m2) && (y >= 300) && (y <= 300 + 60)) {
+        if ((x >= m1) && (x <= m2) && (y >= 300) && (y <= 300 + startButton->getHeight())) {
             if(!maingame)
                 maingame = 1;
       
