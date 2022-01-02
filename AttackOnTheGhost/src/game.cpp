@@ -131,7 +131,7 @@ Game::Game(const char *title, int positionX, int positionY, int width, int heigh
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
     {
         cout << "SDL is initialised\n";
-        window = SDL_CreateWindow(title, positionX, positionY, width, height, SDL_WINDOW_FULLSCREEN);
+        window = SDL_CreateWindow(title, positionX, positionY, width, height, SDL_WINDOW_RESIZABLE);
         renderer = SDL_CreateRenderer(window, -1, 0);
         SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
 
@@ -249,6 +249,8 @@ void Game::render()
                 dest.w = surface->w;
                 texture = SDL_CreateTextureFromSurface(renderer, surface);
                 SDL_RenderCopy(renderer, texture, NULL, &dest);
+                SDL_DestroyTexture(texture);
+                SDL_FreeSurface(surface);
             }
         }
         for (int i = 0; i < bolts.size(); i++)
@@ -408,7 +410,7 @@ void Game::update()
                 }
                 else if (ghostHit)
                 {
-                    power--;
+                    power;
                    
                     for (int i = bolts.size() - 1; i >= 0; i--)
                     {
