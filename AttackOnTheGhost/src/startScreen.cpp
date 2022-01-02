@@ -8,8 +8,8 @@ startScreen::startScreen(SDL_Renderer* renderer,std::string text) {
 
 void startScreen::render(int x,int y) {
 	SDL_Surface* surface;
-	TTF_Font* gFont1 = TTF_OpenFont("font/ARCADE.ttf", 52);
-	SDL_Color textColor1 = { 210, 105, 30, 255 };
+	TTF_Font* gFont1 = TTF_OpenFont("font/Amatic-Bold.ttf", 90);
+	SDL_Color textColor1 = { 0, 0, 0, 0 };
 	const char* st = text.c_str();
 	surface = TTF_RenderText_Solid(gFont1, st, textColor1);
 	tx = SDL_CreateTextureFromSurface(renderer, surface);

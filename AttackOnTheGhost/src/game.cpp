@@ -195,6 +195,11 @@ void Game::render()
     SDL_RenderClear(renderer);
     if (power == 0)
     {
+        SDL_FreeSurface(background);
+        background = IMG_Load("images/bg1.bmp");
+        SDL_DestroyTexture(backgroundTexture);
+        backgroundTexture = SDL_CreateTextureFromSurface(renderer, background);
+        SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
         yourScore = new startScreen(renderer, "Your Score: " + to_string(Game::score));
         highScore = new startScreen(renderer, "HighScore: " + to_string(Game::highscore));
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
@@ -205,6 +210,13 @@ void Game::render()
 
     }
     else if (maingame==0 &&power!=0) {
+        SDL_FreeSurface(background);
+        background = IMG_Load("images/bg1.bmp");
+        SDL_DestroyTexture(backgroundTexture);
+        backgroundTexture = SDL_CreateTextureFromSurface(renderer, background);
+        SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
+
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         Name->render(heroX , 100);
         startButton->render(heroX, 300);
@@ -215,6 +227,10 @@ void Game::render()
 
     else if (maingame==1 && power != 0)
     {
+        SDL_FreeSurface(background);
+        background = IMG_Load("images/bg.bmp");
+        SDL_DestroyTexture(backgroundTexture);
+        backgroundTexture = SDL_CreateTextureFromSurface(renderer, background);
         SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
         // b->render();
         p->render();
@@ -276,12 +292,12 @@ void Game::eventHandler()
         SDL_GetMouseState(&x, &y);
         k1 = (resolutionX - quit->getWidth()) / 2;
         k2 = (resolutionX + quit->getWidth()) / 2;
-        if ((x >= k1) && (x <= k2) && (y >= 750) && (y <= 750 + 38))
+        if ((x >= k1) && (x <= k2) && (y >= 750) && (y <= 750 + 60))
             isRunning = false;
 
         m1 = (resolutionX - startButton->getWidth()) / 2;
         m2 = (resolutionX + startButton->getWidth()) / 2;
-        if ((x >= m1) && (x <= m2) && (y >= 300) && (y <= 300 + 38)) {
+        if ((x >= m1) && (x <= m2) && (y >= 300) && (y <= 300 + 60)) {
             if(!maingame)
                 maingame = 1;
       

@@ -37,7 +37,7 @@ int main(){
     Uint32 substracter;
     game = new Game("manan", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, resolutionX, resolutionY, true,sc);
     game->highscore = sc;
-    cout << "main: " << game->highscore << endl;
+
     while(game->running()){
         frameStart=SDL_GetTicks();
         game->eventHandler();
@@ -50,7 +50,7 @@ int main(){
         game->render();
         frameTime=frameStart-SDL_GetTicks();
         if(frameDelay>frameTime){
-            substracter = (frameDelay - frameTime) * (0.8);
+            substracter = (frameDelay - frameTime) * (1);
             SDL_Delay((frameDelay-frameTime)-substracter);
             //cout << (frameDelay - frameTime) / 100 << endl;
         }
@@ -62,6 +62,7 @@ int main(){
 
          }
     }
+    cout << "Game Over" << endl;
     if(game->power==0)
     SDL_Delay(4000);
     
