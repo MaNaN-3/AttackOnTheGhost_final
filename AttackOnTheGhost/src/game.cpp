@@ -1,6 +1,7 @@
 #pragma once 
 #include <iostream>
 #include <fstream>
+#include <SDL_mixer.h>
 
 #include "../include/game.hpp"
 #include "../include/Ghost.hpp"
@@ -11,8 +12,8 @@
 #include"../include/SDL2SoundEffects.hpp"
 //#include "../include/bullet.hpp"
 
-#define ghostHeight 70
-#define ghostWidth 70
+#define ghostHeight 100
+#define ghostWidth 100
 #define resolutionX 1920
 #define resolutionY 1080
 #define heroX resolutionX / 2
@@ -104,7 +105,7 @@ void Game::ghostHandler()
     // b->fire(0,0);
     // b->animate();
 
-    p = new Player(heroX, heroY, 80, 80, "images/hero.bmp", renderer);
+    p = new Player(heroX, heroY, 120, 120, "images/hero.bmp", renderer);
     p->update(false);
     p->animate();
 
@@ -294,12 +295,12 @@ void Game::eventHandler()
         SDL_GetMouseState(&x, &y);
         k1 = (resolutionX - quit->getWidth()) / 2;
         k2 = (resolutionX + quit->getWidth()) / 2;
-        if ((x >= k1) && (x <= k2) && (y >= 750) && (y <= 750 + 60))
+        if ((x >= k1) && (x <= k2) && (y >= 750) && (y <= 750 + quit->getHeight()))
             isRunning = false;
 
         m1 = (resolutionX - startButton->getWidth()) / 2;
         m2 = (resolutionX + startButton->getWidth()) / 2;
-        if ((x >= m1) && (x <= m2) && (y >= 300) && (y <= 300 + 60)) {
+        if ((x >= m1) && (x <= m2) && (y >= 300) && (y <= 300 + startButton->getHeight())) {
             if(!maingame)
                 maingame = 1;
       
@@ -340,8 +341,7 @@ void Game::eventHandler()
                 {
                     if (ghosts[i]->getstring() == input)
                     {
-                        // ghosts[i]=NULL;
-                        // ghosts.erase(ghosts.begin()+i);
+
                         ghosts[i]->Destroyed();
                         p->animate();
                        
@@ -400,6 +400,10 @@ void Game::update()
                     ghosts[i] = NULL;
                     ghosts.erase(ghosts.begin() + i);
                     int k = rand() % posX.size();
+                    if (heroX < posX[k].X) {
+                        ghosts.push_back(new SinGhost(posX[k].X, posX[k].Y, ghostHeight, ghostWidth, "images/ghost1.bmp", ghostSpeed, renderer, all[stringCounter++]));
+
+                    }
                     ghosts.push_back(new SinGhost(posX[k].X, posX[k].Y, ghostHeight, ghostWidth, "images/ghost1.bmp", ghostSpeed, renderer, all[stringCounter++]));
                     if (score > 50)
                         ghostSpeed = 3;
@@ -428,13 +432,14 @@ void Game::update()
 
                 }
                 if (bulletPresent) {
-                    p->update(true);
+                    //p->update(true);
                     bulletPresent = false;
                 }
                 else {
-                    p->update(true);
+                    //p->update(false);
 
                 }
+                p->update(false);
             }
         }
         if (ghosts.size() == 0)

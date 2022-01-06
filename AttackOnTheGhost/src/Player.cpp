@@ -29,7 +29,8 @@ void Player::update(bool destroyed)
         destR.h = height; destR.w = width;
         destR.x = x; destR.y = y;
         
-            counter++;
+        if (destroyed)
+            counter += 10;;
         
     }
     else if ((counter/10)%4 == 1)
@@ -60,7 +61,7 @@ void Player::update(bool destroyed)
         srcR.h = 57;
         destR.h = height; destR.w = width;
         destR.x = x; destR.y = y;
-        counter ++;
+        counter =0;
     }
     destR.h = height; destR.w = width;
     destR.x = x; destR.y = y;

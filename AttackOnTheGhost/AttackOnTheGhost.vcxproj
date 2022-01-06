@@ -151,7 +151,6 @@
     <ClCompile Include="src\Energy.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\Ghost.cpp" />
-    <ClCompile Include="src\LTexture.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Score.cpp" />
@@ -165,7 +164,6 @@
     <ClInclude Include="include\Energy.hpp" />
     <ClInclude Include="include\game.hpp" />
     <ClInclude Include="include\Ghost.hpp" />
-    <ClInclude Include="include\LTexture.hpp" />
     <ClInclude Include="include\Player.hpp" />
     <ClInclude Include="include\Score.hpp" />
     <ClInclude Include="include\SDL2SoundEffects.hpp" />

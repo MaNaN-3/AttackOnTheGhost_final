@@ -85,7 +85,11 @@ void Ghost::animate(TTF_Font *font, const char *image1)
 {
     tmpSurface;
 
-    tmpSurface = SDL_LoadBMP(image1);
+    if(heroX< x)
+        tmpSurface = SDL_LoadBMP("images/ghost3_mirror.bmp");
+    else {
+       tmpSurface = SDL_LoadBMP("images/ghost3.bmp");
+    }
     
 
     // SDL_Color sc = {0, 0, 0, 0};

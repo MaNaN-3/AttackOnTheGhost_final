@@ -51,7 +51,7 @@ int main(){
 
         if (game->power == 0) {
             
-            game->power = 5;
+            
             
             break;
 
@@ -60,8 +60,9 @@ int main(){
     cout << "Game Over" << endl;
     if(game->power==0)
     SDL_Delay(4000);
+    game->power = 5;
     
-    file << game->score << endl;
+    file <<endl<< game->score;
 
     return 0;
 }
