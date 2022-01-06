@@ -7,9 +7,9 @@ public:
   SDL2SoundEffects();
   ~SDL2SoundEffects();
 
-  void addSoundEffect(const char* path);
+  void addSoundEffect(const char* add);
 
-  void playSoundEffect(const int which) const;
+  void playSoundEffect(const int play) const;
 
 private:
   
